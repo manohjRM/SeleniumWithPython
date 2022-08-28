@@ -1,10 +1,20 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ecs
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
+from selenium import webdriver
 
 
-class BaseClass:
+class KeyClass:
     def __init__(self, driver):
         self.driver = driver
+
+    @staticmethod
+    def driver_chrome():
+        service = Service(ChromeDriverManager().install())
+        options = webdriver.ChromeOptions()
+        driver = webdriver.Chrome(service=service, options=options)
+        return driver
 
     def click_element(self, by_loc):
         WebDriverWait(self.driver, 10).until(ecs.visibility_of_element_located(by_loc)).click()

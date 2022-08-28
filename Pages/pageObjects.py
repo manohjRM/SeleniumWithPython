@@ -1,9 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from Pages.keywordsClass import BaseClass
+from Pages.keywordsClass import KeyClass
 
 
-class Login(BaseClass):
+class Login(KeyClass):
     username = (By.ID, "user-name")
     password = (By.ID, "password")
     login_button = (By.ID, "login-button")

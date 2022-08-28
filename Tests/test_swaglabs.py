@@ -12,5 +12,4 @@ class TestLoginPage(BaseTest):
         self.loginPage = Login(self.driver)
         self.loginPage.login("standard_user", "secret_sauce")
         self.loginPage.get_title("Swag Labs")
-        print("\n")
-        print(self.driver.title)
+        print("\n"+self.driver.title)
