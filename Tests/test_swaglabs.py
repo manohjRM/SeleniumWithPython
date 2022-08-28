@@ -1,22 +1,17 @@
-import os
 import time
 
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from Pages import pageObjects
+from Pages.pageObjects import Login
 import pytest
 
-Driver = None
+from Resources.conftest import BaseTest
 
 
-def test_launch_browser():
-    global Driver
-    Driver = webdriver.Chrome(ChromeDriverManager().install())
-    Driver.get("https://www.saucedemo.com/")
-    Driver.implicitly_wait(10)
-    loginPage = pageObjects.Login(Driver)
-    loginPage.login("standard_user", "secret_sauce")
-    print("\n")
-    print(Driver.title)
-    time.sleep(5)
-    Driver.close()
+class TestLoginPage:
+
+    def test_login_swag_labs(self, launch_browser):
+        self.loginPage = Login(self.driver)
+        self.loginPage.login("standard_user", "secret_sauce")
+        assert self.driver.title == "Swag Labs"
+        print("\n")
+        print(self.Driver.title)
+        time.sleep(5)
