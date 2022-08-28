@@ -1,6 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ecs
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
 
@@ -13,6 +14,13 @@ class KeyClass:
     def driver_chrome():
         service = Service(ChromeDriverManager().install())
         options = webdriver.ChromeOptions()
+        driver = webdriver.Chrome(service=service, options=options)
+        return driver
+
+    @staticmethod
+    def driver_firefox():
+        service = Service(GeckoDriverManager().install())
+        options = webdriver.FirefoxOptions()
         driver = webdriver.Chrome(service=service, options=options)
         return driver
 
